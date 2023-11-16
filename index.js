@@ -8,15 +8,21 @@ async function getList() {
     }
     return null;
 }
-const list = await getList();
 
-export const validateEmailDomain = (email, userCountry) => {
+const validateEmailDomain = async (email) => {
+    const list = await getList();
     const receivedEmailDomain = email.split('@')[1];
     if (list) {
-        const isValidCountry = list.countries.filter((country) => country === userCountry);
-        const isValidDomain = list.emailDomain.filter((domain) => domain === receivedEmailDomain);
-        return (isValidDomain.length !== 0) && (isValidCountry.length !== 0);
+        const isValidDomain = list.emailDomain.includes(receivedEmailDomain);
+        return isValidDomain;
     } return false;
 };
 
-// להפריד את הפונקציות
+const validateCountry = async (userCountry) => {
+    const list = await getList();
+    if (list) {
+        const isValidCountry = list.countries.includes(userCountry);
+        return isValidCountry;
+    } return false;
+};
+
