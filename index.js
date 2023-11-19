@@ -26,3 +26,4 @@ const validateCountry = async (userCountry) => {
     } return false;
 };
 
+module.exports = {validateEmailDomain, validateCountry}
