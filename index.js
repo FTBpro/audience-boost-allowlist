@@ -11,7 +11,7 @@ async function getList() {
 
 const validateEmailDomain = async (email) => {
     const list = await getList();
-    const receivedEmailDomain = email.split('@')[1];
+    const receivedEmailDomain = email.toLowerCase().split('@')[1];
     if (list) {
         const isValidDomain = list.emailDomain.includes(receivedEmailDomain);
         return isValidDomain;
